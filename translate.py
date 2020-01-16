@@ -3,7 +3,6 @@
 
 
 def translate(start,end):
-    direction = []
     max_steps = 0
     for servo in range(0,6):
         steps=abs(start[servo] - end[servo])
@@ -12,16 +11,6 @@ def translate(start,end):
         if steps > max_steps:
             max_steps = steps
             hi_servo = servo
-        # Determine direction
-        print("Servo = %d" % servo)
-        if start[servo] > end[servo]:
-           direction.append(1)
-        else:
-           direction.append(0)
-
-    print("servo %d = %s" % (hi_servo+1,max_steps))
-    print("direction list = %s" % str(direction))
-
 
     # Create the locmat array with steps for servo that
     # moves the most
@@ -42,7 +31,6 @@ def translate(start,end):
       # when the servo with the most steps does.
     for servo in range(0,6):
        if servo != hi_servo:
-          stepCount = round(max_steps/(abs(start[servo] - end[servo])+1))
           for step in range(0,max_steps):
              if start[servo] > end[servo]:
 
